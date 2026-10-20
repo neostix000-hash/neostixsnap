@@ -1,0 +1,33 @@
+# Dependencies (the project has none at runtime, but keep installs out of Git)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Build and release artifacts
+dist/
+release/
+*.zip
+
+# Temporary visual QA harness and captures
+.preview/
+.captures/
+*.cpuprofile
+*.trace.json
+
+# Editor and OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/
+*.swp
+*~

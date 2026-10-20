@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="NeostixSnap logo">
+  <defs>
+    <linearGradient id="ns-logo-gradient" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE" />
+      <stop offset=".5" stop-color="#3B82F6" />
+      <stop offset="1" stop-color="#8B5CF6" />
+    </linearGradient>
+  </defs>
+  <rect x="1.5" y="1.5" width="61" height="61" rx="16" fill="#070B14" stroke="url(#ns-logo-gradient)" stroke-width="1.5" />
+  <path d="M17 24V17h7M40 17h7v7M47 40v7h-7M24 47h-7v-7" stroke="url(#ns-logo-gradient)" stroke-width="2.8" stroke-linecap="round" />
+  <circle cx="32" cy="32" r="10.5" stroke="url(#ns-logo-gradient)" stroke-width="1.8" opacity=".85" />
+  <path d="M33.8 22.5 25.5 34h5.8l-1.1 7.8 8.3-11.7h-5.8l1.1-7.6Z" fill="#fff" />
+</svg>

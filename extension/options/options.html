@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NeostixSnap · Settings</title>
+    <link rel="stylesheet" href="../shared/base.css" />
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body class="options-body">
+    <div class="options-app">
+      <div class="ambient ambient-a" aria-hidden="true"></div>
+      <div class="ambient ambient-b" aria-hidden="true"></div>
+
+      <header class="options-header">
+        <div class="brand">
+          <span class="logo" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none">
+              <rect x="1.5" y="1.5" width="61" height="61" rx="16" fill="#070B14" stroke="url(#options-logo-g)" stroke-width="1.5" />
+              <path d="M17 24V17h7M40 17h7v7M47 40v7h-7M24 47h-7v-7" stroke="url(#options-logo-g)" stroke-width="2.8" stroke-linecap="round" />
+              <circle cx="32" cy="32" r="10.5" stroke="url(#options-logo-g)" stroke-width="1.8" opacity=".85" />
+              <path d="M33.8 22.5 25.5 34h5.8l-1.1 7.8 8.3-11.7h-5.8l1.1-7.6Z" fill="#fff" />
+              <defs>
+                <linearGradient id="options-logo-g" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#22D3EE" /><stop offset=".5" stop-color="#3B82F6" /><stop offset="1" stop-color="#8B5CF6" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </span>
+          <span class="brand-word">Neostix<span>Snap</span></span>
+          <span class="brand-chip">Settings</span>
+        </div>
+        <div class="header-links">
+          <a class="header-link" href="../privacy/privacy.html" target="_blank" rel="noreferrer">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 1.8 13 3.6v4c0 3-2.1 5.3-5 6.6-2.9-1.3-5-3.6-5-6.6v-4L8 1.8Z" stroke="currentColor" stroke-width="1.1" />
+              <path d="m5.8 8 1.5 1.4L10.4 6" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Privacy
+          </a>
+          <span class="version-chip" id="versionLabel">v1.0.0</span>
+        </div>
+      </header>
+
+      <main class="options-main">
+        <section class="intro">
+          <span class="eyebrow"><i></i> Control room</span>
+          <h1>Connect NeostixSnap<br /><span class="grad-text">to your AI vision backend.</span></h1>
+          <p class="lede">
+            The extension never holds a provider API key. It sends a screenshot to your own
+            backend, which keeps the AI key server-side and returns one explained answer.
+          </p>
+        </section>
+
+        <div class="layout">
+          <div class="column">
+            <form class="panel" id="settingsForm" novalidate>
+              <div class="panel-head">
+                <div>
+                  <h2>Backend &amp; model</h2>
+                  <p>Point the extension at the server you control.</p>
+                </div>
+                <span class="panel-chip" id="profileChip">Local profile</span>
+              </div>
+
+              <div class="field">
+                <label for="backendUrl">Backend URL</label>
+                <div class="input-wrap">
+                  <svg class="input-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <circle cx="10" cy="10" r="7.2" stroke="currentColor" stroke-width="1.2" />
+                    <path d="M2.9 10h14.2M10 2.8c2 2 3.1 4.5 3.1 7.2S12 15.2 10 17.2C8 15.2 6.9 12.7 6.9 10S8 4.8 10 2.8Z" stroke="currentColor" stroke-width="1.1" />
+                  </svg>
+                  <input
+                    id="backendUrl"
+                    name="backendUrl"
+                    type="url"
+                    inputmode="url"
+                    spellcheck="false"
+                    autocomplete="off"
+                    placeholder="http://127.0.0.1:8787"
+                    aria-describedby="backendUrlHint transportWarning"
+                  />
+                </div>
+                <p class="field-hint" id="backendUrlHint">
+                  Default local server: <code>http://127.0.0.1:8787</code>. Use HTTPS for a remote server.
+                </p>
+                <p class="field-warning" id="transportWarning" hidden>
+                  <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 5.4v3.3M8 10.8v.1M13.9 8A5.9 5.9 0 1 1 2.1 8a5.9 5.9 0 0 1 11.8 0Z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+                  <span>This remote address is not HTTPS. Screenshots and the access token would travel unencrypted.</span>
+                </p>
+                <p class="field-error" id="backendUrlError" hidden></p>
+              </div>
+
+              <div class="field">
+                <label for="accessToken">Extension access token <span class="optional">optional</span></label>
+                <div class="input-wrap has-action">
+                  <svg class="input-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                    <rect x="4.2" y="8.6" width="11.6" height="7.4" rx="1.7" stroke="currentColor" stroke-width="1.2" />
+                    <path d="M7 8.6V6.5a3 3 0 0 1 6 0v2.1M10 11.6v1.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+                  </svg>
+                  <input
+                    id="accessToken"
+                    name="accessToken"
+                    type="password"
+                    spellcheck="false"
+                    autocomplete="off"
+                    maxlength="512"
+                    placeholder="Paste the server EXTENSION_TOKEN"
+                    aria-describedby="accessTokenHint"
+                  />
+                  <button class="reveal-btn" id="toggleToken" type="button" aria-label="Show access token" aria-pressed="false">
+                    <svg class="eye-show" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <path d="M2.3 10S5 4.8 10 4.8 17.7 10 17.7 10 15 15.2 10 15.2 2.3 10 2.3 10Z" stroke="currentColor" stroke-width="1.2" />
+                      <circle cx="10" cy="10" r="2.3" stroke="currentColor" stroke-width="1.2" />
+                    </svg>
+                    <svg class="eye-hide" viewBox="0 0 20 20" fill="none" aria-hidden="true" hidden>
+                      <path d="m3 3 14 14M8.2 5.1A8.7 8.7 0 0 1 10 4.8c5 0 7.7 5.2 7.7 5.2a13 13 0 0 1-2.2 2.9M5.4 6.2A13.4 13.4 0 0 0 2.3 10S5 15.2 10 15.2c1 0 1.9-.2 2.7-.6" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" />
+                    </svg>
+                  </button>
+                </div>
+                <p class="field-hint" id="accessTokenHint">
+                  Only needed when <code>EXTENSION_TOKEN</code> is set on the server. Stored locally in this Chrome profile.
+                </p>
+              </div>
+
+              <div class="field-row">
+                <div class="field">
+                  <label for="model">Model override <span class="optional">optional</span></label>
+                  <div class="input-wrap">
+                    <svg class="input-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                      <path d="m10 2.6 2.1 4.4 4.8.7-3.5 3.4.8 4.8L10 13.6l-4.2 2.3.8-4.8L3.1 7.7l4.8-.7L10 2.6Z" stroke="currentColor" stroke-width="1.15" stroke-linejoin="round" />
+                    </svg>
+                    <input
+                      id="model"
+                      name="model"
+                      type="text"
+                      spellcheck="false"
+                      autocomplete="off"
+                      maxlength="120"
+                      placeholder="Use the server default"
+                      aria-describedby="modelHint"
+                    />
+                  </div>
+                  <p class="field-hint" id="modelHint">
+                    Requires <code>ALLOW_CLIENT_MODEL=true</code> on the backend.
+                  </p>
+                  <p class="field-error" id="modelError" hidden></p>
+                </div>
+
+                <div class="field">
+                  <label for="language">Default answer language</label>
+                  <div class="select-wrap">
+                    <select id="language" name="language"></select>
+                    <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m3 4.5 3 3 3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" /></svg>
+                  </div>
+                  <p class="field-hint">Auto answers in the language of the exercise.</p>
+                </div>
+              </div>
+
+              <div class="access-card" id="permissionCard">
+                <span class="access-icon" id="permissionIcon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none">
+                    <path d="M10 2.4 16 4.6v4.7c0 3.5-2.5 6.4-6 7.8-3.5-1.4-6-4.3-6-7.8V4.6L10 2.4Z" stroke="currentColor" stroke-width="1.2" />
+                    <path d="m7.3 10 1.8 1.8 3.7-3.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+                <div class="access-copy">
+                  <b id="permissionTitle">Checking Chrome access…</b>
+                  <p id="permissionText">Chrome must allow requests to the backend address.</p>
+                </div>
+                <button class="btn btn-ghost btn-sm" id="permissionBtn" type="button" hidden>Grant access</button>
+              </div>
+
+              <div class="form-actions">
+                <button class="btn btn-primary" id="saveBtn" type="submit">
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 3.5h9.2L16.5 7v9.5h-13v-13Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M6.8 3.5v4h6v-4M6.8 16.5v-4.8h6.4v4.8" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+                  <span id="saveLabel">Save settings</span>
+                </button>
+                <button class="btn btn-ghost" id="testBtn" type="button">
+                  <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3 10h3l1.5-3.5L10 14l2-5 1.2 1H17" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span id="testLabel">Test connection</span>
+                </button>
+                <button class="text-btn" id="resetBtn" type="button">Reset defaults</button>
+              </div>
+
+              <div class="form-status" id="formStatus" role="status" hidden></div>
+            </form>
+
+            <section class="panel health-panel" aria-labelledby="healthHeading">
+              <div class="panel-head">
+                <div>
+                  <h2 id="healthHeading">Connection check</h2>
+                  <p>Reachability and AI readiness reported by your backend.</p>
+                </div>
+                <span class="health-badge idle" id="healthBadge">Not tested</span>
+              </div>
+
+              <div class="health-empty" id="healthEmpty">
+                <span class="health-pulse" aria-hidden="true"></span>
+                <p>Save the settings or run a test to see the backend status.</p>
+              </div>
+
+              <div class="health-details" id="healthDetails" hidden>
+                <div class="health-grid">
+                  <div><span>Service</span><b id="healthService">—</b></div>
+                  <div><span>Provider</span><b id="healthProvider">—</b></div>
+                  <div><span>Model</span><b id="healthModel">—</b></div>
+                  <div><span>Access</span><b id="healthAuth">—</b></div>
+                </div>
+                <div class="health-problems" id="healthProblems" hidden>
+                  <b>Needs attention</b>
+                  <ul id="healthProblemsList"></ul>
+                </div>
+                <p class="health-note" id="healthNote" hidden></p>
+              </div>
+            </section>
+          </div>
+
+          <aside class="column side-column">
+            <section class="side-card shortcut-card">
+              <div class="side-head">
+                <span class="side-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none"><rect x="2.6" y="5" width="14.8" height="10" rx="2" stroke="currentColor" stroke-width="1.2"/><path d="M5.4 8.2h.1M8 8.2h.1M10.6 8.2h.1M13.2 8.2h.1M7 11.8h6" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                </span>
+                <div><h3>Capture shortcut</h3><p>Works on any page without opening the popup.</p></div>
+              </div>
+              <div class="shortcut-display">
+                <kbd id="shortcutKeys">Alt + Q</kbd>
+                <span>Snap &amp; solve</span>
+              </div>
+              <p class="shortcut-note" id="shortcutNote">
+                If Chrome or another extension owns this shortcut, assign a different one.
+              </p>
+              <button class="btn btn-ghost btn-sm full-btn" id="openShortcuts" type="button">Change shortcut</button>
+            </section>
+
+            <section class="side-card">
+              <div class="side-head">
+                <span class="side-icon" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M4 2.8h9.2L16 5.6v11.6H4V2.8Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/><path d="M6.6 7h6.8M6.6 9.8h6.8M6.6 12.6h4.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+                </span>
+                <div><h3>Setup checklist</h3><p>From clone to first answer.</p></div>
+              </div>
+              <ol class="setup-list">
+                <li>
+                  <span class="setup-num">01</span>
+                  <div>
+                    <b>Start the backend</b>
+                    <p>Run the zero-dependency Node server in the project folder.</p>
+                    <div class="code-row"><code>cd server &amp;&amp; npm start</code><button class="copy-mini" type="button" data-copy="cd server && npm start" aria-label="Copy start command">Copy</button></div>
+                  </div>
+                </li>
+                <li>
+                  <span class="setup-num">02</span>
+                  <div>
+                    <b>Add your AI key</b>
+                    <p>Copy <code>.env.example</code> to <code>.env</code> and set <code>AI_PROVIDER</code>, <code>AI_MODEL</code>, and <code>AI_API_KEY</code>.</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="setup-num">03</span>
+                  <div>
+                    <b>Connect this page</b>
+                    <p>Save the backend URL, grant Chrome access, then run a connection test.</p>
+                  </div>
+                </li>
+                <li>
+                  <span class="setup-num">04</span>
+                  <div>
+                    <b>Snap an exercise</b>
+                    <p>Press <kbd>Alt + Q</kbd>, drag over the task, and read the explained answer.</p>
+                  </div>
+                </li>
+              </ol>
+            </section>
+
+            <section class="side-card security-card">
+              <div class="side-head">
+                <span class="side-icon green" aria-hidden="true">
+                  <svg viewBox="0 0 20 20" fill="none"><path d="M10 2.4 16 4.6v4.7c0 3.5-2.5 6.4-6 7.8-3.5-1.4-6-4.3-6-7.8V4.6L10 2.4Z" stroke="currentColor" stroke-width="1.2"/><path d="m7.3 10 1.8 1.8 3.7-3.8" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </span>
+                <div><h3>Privacy by design</h3><p>Your AI key stays on the server.</p></div>
+              </div>
+              <ul class="check-list">
+                <li>Provider API keys are never stored in the extension.</li>
+                <li>Screenshots live only in session memory and are dropped when the answer window closes.</li>
+                <li>The extension collects no browsing history and has no analytics.</li>
+                <li>Images are sent to your backend only after you select an area.</li>
+              </ul>
+              <a class="side-link" href="../privacy/privacy.html" target="_blank" rel="noreferrer">
+                Read the full privacy policy
+                <svg viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M3 7h8M7.8 3.8 11 7l-3.2 3.2" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </section>
+          </aside>
+        </div>
+      </main>
+
+      <footer class="options-footer">
+        <span>NeostixSnap · AI answers can be wrong. Always double-check important facts.</span>
+        <span class="footer-right">
+          <a href="../privacy/privacy.html" target="_blank" rel="noreferrer">Privacy policy</a>
+          <span class="footer-dot">·</span>
+          <span>Version <span id="footerVersion">1.0.0</span></span>
+        </span>
+      </footer>
+    </div>
+
+    <div class="toast" id="toast" role="status" hidden></div>
+    <script type="module" src="options.js"></script>
+  </body>
+</html>

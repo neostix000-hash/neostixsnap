@@ -1,0 +1,16 @@
+{
+  "name": "neostixsnap-server",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Secure, zero-dependency AI proxy for the NeostixSnap Chrome extension",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "test": "node --test"
+  },
+  "license": "MIT"
+}

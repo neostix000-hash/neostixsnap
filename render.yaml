@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: neostixsnap
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./server/Dockerfile
+    dockerContext: ./server
+    healthCheckPath: /health
+    envVars:
+      - key: AI_PROVIDER
+        value: openrouter
+      - key: AI_MODEL
+        value: minimax/minimax-m3.1-flash:free
+      - key: AI_API_KEY
+        sync: false
+      - key: EXTENSION_TOKEN
+        generateValue: true
+      - key: HOST
+        value: 0.0.0.0
+      - key: TRUST_PROXY
+        value: "true"
+      - key: ALLOWED_ORIGINS
+        value: ""

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Select an area · NeostixSnap</title>
+    <link rel="stylesheet" href="../shared/base.css" />
+    <link rel="stylesheet" href="selector.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="brand">
+          <span class="logo" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none">
+              <rect x="1.5" y="1.5" width="61" height="61" rx="16" fill="#070B14" stroke="url(#sel-logo-g)" stroke-width="1.5" />
+              <path d="M17 24V17h7M40 17h7v7M47 40v7h-7M24 47h-7v-7" stroke="url(#sel-logo-g)" stroke-width="2.8" stroke-linecap="round" />
+              <circle cx="32" cy="32" r="10.5" stroke="url(#sel-logo-g)" stroke-width="1.8" opacity=".85" />
+              <path d="M33.8 22.5 25.5 34h5.8l-1.1 7.8 8.3-11.7h-5.8l1.1-7.6Z" fill="#fff" />
+              <defs>
+                <linearGradient id="sel-logo-g" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#22D3EE" /><stop offset=".5" stop-color="#3B82F6" /><stop offset="1" stop-color="#8B5CF6" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </span>
+          <span class="brand-word">Neostix<span>Snap</span></span>
+          <span class="fallback-chip">Compatibility capture</span>
+        </div>
+        <button class="btn btn-ghost btn-sm" id="cancelTop" type="button">Cancel</button>
+      </header>
+
+      <main class="main">
+        <div class="heading">
+          <div>
+            <h1>Select the question</h1>
+            <p>
+              Chrome couldn't overlay this page, so NeostixSnap captured the visible tab.
+              Drag over the exercise below.
+            </p>
+          </div>
+          <div class="privacy-note">
+            <span class="pulse-dot"></span>
+            Held in memory only
+          </div>
+        </div>
+
+        <section class="stage" id="stage" aria-label="Screenshot selection area">
+          <img id="shot" class="shot" alt="Screenshot of the visible page" draggable="false" />
+          <div class="shade" id="shade"></div>
+          <div class="selection" id="selection" aria-hidden="true">
+            <span class="corner tl"></span><span class="corner tr"></span>
+            <span class="corner bl"></span><span class="corner br"></span>
+          </div>
+          <div class="stage-hint" id="stageHint">
+            <span class="hint-kicker">Drag</span>
+            <span>Select the whole exercise</span>
+          </div>
+          <div class="stage-status" id="stageStatus" hidden></div>
+
+          <div class="center-state" id="loader">
+            <div class="orb"></div>
+            <div class="center-copy">
+              <strong>Preparing the capture</strong>
+              <span>Loading the page screenshot…</span>
+            </div>
+          </div>
+
+          <div class="center-state error-state" id="errorState" hidden>
+            <div class="error-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5m0 3.2v.1M10.3 3.9 2.7 17a2 2 0 0 0 1.7 3h15.2a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            </div>
+            <strong id="errorTitle">Capture unavailable</strong>
+            <p id="errorText">The screenshot could not be loaded.</p>
+            <button class="btn btn-ghost btn-sm" id="errorClose" type="button">Close window</button>
+          </div>
+
+          <div class="processing" id="processing" hidden>
+            <div class="proc-card">
+              <div class="orb small"></div>
+              <div class="center-copy">
+                <strong>Snapping your selection</strong>
+                <span>Sending it to the AI solver…</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <div class="legend">
+          <span class="legend-item"><i class="legend-dot"></i> Drag to select</span>
+          <span class="legend-item"><kbd>Esc</kbd> Cancel</span>
+          <span class="legend-sep"></span>
+          <span class="legend-muted">The image is deleted when this window closes.</span>
+        </div>
+        <div class="footer-actions">
+          <span class="selection-size" id="selectionSize">No area selected</span>
+          <button class="btn btn-primary btn-sm" id="cancelBottom" type="button">Cancel</button>
+        </div>
+      </footer>
+    </div>
+    <script type="module" src="selector.js"></script>
+  </body>
+</html>

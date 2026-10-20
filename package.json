@@ -1,0 +1,17 @@
+{
+  "name": "neostixsnap",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Chrome extension and self-hosted AI vision backend for snapping and solving school exercises",
+  "type": "module",
+  "scripts": {
+    "test": "npm --prefix server test",
+    "check": "node scripts/check-extension.mjs",
+    "icons": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/generate-icons.ps1",
+    "package:extension": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/package-extension.ps1"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}

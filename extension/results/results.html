@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NeostixSnap · Answer</title>
+    <link rel="stylesheet" href="../shared/base.css" />
+    <link rel="stylesheet" href="results.css" />
+  </head>
+  <body class="results-body">
+    <div class="app">
+      <div class="ambient" aria-hidden="true"></div>
+
+      <header class="topbar">
+        <div class="brand">
+          <span class="logo" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none">
+              <rect x="1.5" y="1.5" width="61" height="61" rx="16" fill="#070B14" stroke="url(#res-logo-g)" stroke-width="1.5" />
+              <path d="M17 24V17h7M40 17h7v7M47 40v7h-7M24 47h-7v-7" stroke="url(#res-logo-g)" stroke-width="2.8" stroke-linecap="round" />
+              <circle cx="32" cy="32" r="10.5" stroke="url(#res-logo-g)" stroke-width="1.8" opacity=".85" />
+              <path d="M33.8 22.5 25.5 34h5.8l-1.1 7.8 8.3-11.7h-5.8l1.1-7.6Z" fill="#fff" />
+              <defs>
+                <linearGradient id="res-logo-g" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#22D3EE" /><stop offset=".5" stop-color="#3B82F6" /><stop offset="1" stop-color="#8B5CF6" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </span>
+          <span class="brand-word">Neostix<span>Snap</span></span>
+        </div>
+        <div class="top-actions">
+          <span class="ephemeral-chip" title="The screenshot is held in memory only and removed when this window closes.">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+              <path d="M8 1.8 13 3.6v4c0 3-2.1 5.3-5 6.6-2.9-1.3-5-3.6-5-6.6v-4L8 1.8Z" stroke="currentColor" stroke-width="1.1" />
+              <path d="m5.8 8 1.5 1.4L10.4 6" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Ephemeral
+          </span>
+          <button class="icon-btn" id="openSettings" type="button" title="Settings" aria-label="Open settings">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M9.6 3.6h4.8l.6 2.1a7 7 0 0 1 1.7.9l2.1-.6 2.4 4.2-1.5 1.5c.1.4.2.9.2 1.4s-.1 1-.2 1.4l1.5 1.5-2.4 4.2-2.1-.6a7 7 0 0 1-1.7.9l-.6 2.1H9.6l-.6-2.1a7 7 0 0 1-1.7-.9l-2.1.6-2.4-4.2 1.5-1.5a7 7 0 0 1 0-2.8L2.8 10.2l2.4-4.2 2.1.6a7 7 0 0 1 1.7-.9l.6-2.1Z" stroke="currentColor" stroke-width="1.35" />
+              <circle cx="12" cy="12.6" r="2.6" stroke="currentColor" stroke-width="1.35" />
+            </svg>
+          </button>
+          <button class="icon-btn" id="closeWindow" type="button" title="Close" aria-label="Close window">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" /></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="main" id="main">
+        <section class="view loading-view" id="loadingView" aria-busy="true">
+          <div class="preview-card" id="previewCard">
+            <img id="previewImage" alt="Selected exercise screenshot" />
+            <div class="preview-scanner"></div>
+            <div class="preview-fade"></div>
+            <span class="preview-chip"><i></i> Captured</span>
+            <div class="preview-corner tl"></div><div class="preview-corner tr"></div>
+            <div class="preview-corner bl"></div><div class="preview-corner br"></div>
+          </div>
+
+          <div class="solving-head">
+            <div class="solver-orb" aria-hidden="true">
+              <span class="solver-ring"></span>
+              <span class="solver-core">
+                <svg viewBox="0 0 24 24" fill="none"><path d="M13.8 2.4 5.5 13.8h5.7L10.1 21.6l8.4-12h-5.8l1.1-7.2Z" fill="url(#res-bolt)" /><defs><linearGradient id="res-bolt" x1="6" y1="2" x2="18" y2="22" gradientUnits="userSpaceOnUse"><stop stop-color="#ecfeff"/><stop offset=".5" stop-color="#7dd3fc"/><stop offset="1" stop-color="#c4b5fd"/></linearGradient></defs></svg>
+              </span>
+            </div>
+            <div class="solving-copy">
+              <h1 id="loadingTitle">Solving your question</h1>
+              <p id="loadingStage" aria-live="polite">Reading the screenshot…</p>
+            </div>
+          </div>
+
+          <div class="skeleton" aria-hidden="true">
+            <div class="skeleton-badge"></div>
+            <div class="skeleton-line w-88"></div>
+            <div class="skeleton-line w-64"></div>
+            <div class="skeleton-gap"></div>
+            <div class="skeleton-answer">
+              <div class="skeleton-line w-30 strong"></div>
+              <div class="skeleton-line w-92"></div>
+              <div class="skeleton-line w-76"></div>
+            </div>
+          </div>
+
+        </section>
+
+        <section class="view result-view" id="resultView" hidden>
+          <div class="meta-row">
+            <span class="subject-badge" id="subjectBadge">
+              <span class="subject-icon" id="subjectIcon" aria-hidden="true"></span>
+              <span id="subjectText">General</span>
+            </span>
+            <span class="confidence-badge" id="confidenceBadge" hidden></span>
+          </div>
+
+          <article class="card question-card">
+            <div class="card-head">
+              <span class="card-label">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 2.8h10v10.4H3z" stroke="currentColor" stroke-width="1.1" /><path d="M5.4 5.8h5.2M5.4 8h5.2M5.4 10.2h3.1" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" /></svg>
+                Recognized question
+              </span>
+            </div>
+            <div class="question-text" id="questionText"></div>
+            <button class="link-btn" id="expandQuestion" type="button" hidden>Show full question</button>
+          </article>
+
+          <div class="warning-box" id="warningBox" hidden>
+            <svg viewBox="0 0 18 18" fill="none" aria-hidden="true"><path d="M9 5.6v4M9 12.4v.1M7.6 2.8 1.9 12.7a1.5 1.5 0 0 0 1.3 2.2h11.6a1.5 1.5 0 0 0 1.3-2.2L10.4 2.8a1.6 1.6 0 0 0-2.8 0Z" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/></svg>
+            <span id="warningText"></span>
+          </div>
+
+          <article class="card answer-card" id="answerCard">
+            <div class="card-head">
+              <span class="card-label accent">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m2.6 8.4 3.2 3.2 7.6-8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                Answer
+              </span>
+              <span class="card-meta" id="answerMeta">AI-generated</span>
+            </div>
+            <div class="answer-text" id="answerText"></div>
+          </article>
+
+          <div class="items-list" id="itemsList" hidden></div>
+
+          <details class="card steps-card" id="stepsBox">
+            <summary>
+              <span class="steps-title">
+                <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 4h2.2M3 8h2.2M3 12h2.2M7.5 4h5.5M7.5 8h5.5M7.5 12h5.5" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+                Step-by-step explanation
+                <span class="step-count" id="stepCount"></span>
+              </span>
+              <svg class="chevron" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m4.5 6.5 3.5 3.5 3.5-3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+            </summary>
+            <ol class="steps-list" id="stepsList"></ol>
+          </details>
+
+          <article class="card clarify-card" id="clarifyBox" hidden>
+            <div class="clarify-icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5m0 3.2v.1M10.3 3.9 2.7 17a2 2 0 0 0 1.7 3h15.2a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+            <div>
+              <h2 id="clarifyTitle">A clearer capture will help</h2>
+              <p id="clarifyText"></p>
+              <ul class="clarify-tips">
+                <li>Frame the whole exercise, including the instructions.</li>
+                <li>Avoid glare, blur, and cutting off answer choices.</li>
+                <li>Get closer instead of capturing a full page.</li>
+              </ul>
+              <div class="clarify-actions">
+                <button class="btn btn-primary btn-sm" id="clarifySnap" type="button">Capture clearer image</button>
+                <button class="btn btn-ghost btn-sm" id="clarifyRetry" type="button">Try same image</button>
+              </div>
+            </div>
+          </article>
+
+          <div class="result-footnote">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 5.2v3.3M8 10.6v.1M14.2 8A6.2 6.2 0 1 1 1.8 8a6.2 6.2 0 0 1 12.4 0Z" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"/></svg>
+            <span>AI can make mistakes. Double-check important facts.</span>
+            <a href="../privacy/privacy.html" target="_blank" rel="noreferrer">Privacy</a>
+          </div>
+        </section>
+
+        <section class="view error-view" id="errorView" hidden>
+          <div class="error-art" aria-hidden="true">
+            <div class="error-glow"></div>
+            <div class="error-icon">
+              <svg viewBox="0 0 24 24" fill="none"><path d="M12 8v5m0 3.2v.1M10.3 3.9 2.7 17a2 2 0 0 0 1.7 3h15.2a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </div>
+          </div>
+          <span class="error-kicker" id="errorKicker">Something went wrong</span>
+          <h1 id="errorTitle">The answer couldn't be loaded</h1>
+          <p class="error-message" id="errorMessage"></p>
+          <div class="error-help" id="errorHelp" hidden></div>
+          <div class="error-actions">
+            <button class="btn btn-primary" id="errorRetry" type="button">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 10a6 6 0 1 1-1.7-4.2M16 3.6v4.2h-4.2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Try again
+            </button>
+            <button class="btn btn-ghost" id="errorSnap" type="button">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 6.5V5A1.5 1.5 0 0 1 5 3.5h1.5M13.5 3.5H15A1.5 1.5 0 0 1 16.5 5v1.5M16.5 13.5V15a1.5 1.5 0 0 1-1.5 1.5h-1.5M6.5 16.5H5A1.5 1.5 0 0 1 3.5 15v-1.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M7 10h6M10 7v6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".6"/></svg>
+              Snap another
+            </button>
+            <button class="btn btn-ghost" id="errorSettings" type="button">
+              <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M8 3h4l.5 1.7c.5.2 1 .5 1.4.8l1.8-.5 2 3.5-1.3 1.3a5.6 5.6 0 0 1 0 2.4l1.3 1.3-2 3.5-1.8-.5c-.4.3-.9.6-1.4.8L12 19H8l-.5-1.7c-.5-.2-1-.5-1.4-.8l-1.8.5-2-3.5 1.3-1.3a5.6 5.6 0 0 1 0-2.4L2.3 8.5l2-3.5 1.8.5c.4-.3.9-.6 1.4-.8L8 3Z" stroke="currentColor" stroke-width="1.15"/><circle cx="10" cy="11" r="2" stroke="currentColor" stroke-width="1.15"/></svg>
+              Open settings
+            </button>
+            <button class="btn btn-ghost" id="errorClose" type="button">Close</button>
+          </div>
+          <div class="error-code" id="errorCodeRow" hidden>Code: <code id="errorCode"></code></div>
+        </section>
+      </main>
+
+      <footer class="footer" id="footer">
+        <div class="footer-row">
+          <label class="lang-label" for="languageSelect">Answer language</label>
+          <div class="select-wrap">
+            <select id="languageSelect"></select>
+            <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m3 4.5 3 3 3-3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          </div>
+          <span class="lang-hint" id="langHint" hidden>Regenerate to apply</span>
+          <span class="footer-privacy">Sent once · never saved</span>
+        </div>
+        <div class="footer-actions">
+          <button class="btn btn-primary snap-again" id="snapAnother" type="button">
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M3.5 6.5V5A1.5 1.5 0 0 1 5 3.5h1.5M13.5 3.5H15A1.5 1.5 0 0 1 16.5 5v1.5M16.5 13.5V15a1.5 1.5 0 0 1-1.5 1.5h-1.5M6.5 16.5H5A1.5 1.5 0 0 1 3.5 15v-1.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/><path d="M7 10h6M10 7v6" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" opacity=".55"/></svg>
+            <span id="snapAnotherLabel">Snap another</span>
+          </button>
+          <button class="btn btn-ghost copy-btn" id="copyAnswer" type="button" disabled>
+            <svg class="copy-icon" viewBox="0 0 20 20" fill="none" aria-hidden="true"><rect x="7" y="7" width="9" height="9" rx="1.6" stroke="currentColor" stroke-width="1.25"/><path d="M13 7V5.6A1.6 1.6 0 0 0 11.4 4H5.6A1.6 1.6 0 0 0 4 5.6v5.8A1.6 1.6 0 0 0 5.6 13H7" stroke="currentColor" stroke-width="1.25"/></svg>
+            <span id="copyLabel">Copy</span>
+          </button>
+          <button class="btn btn-ghost regen-btn" id="regenerate" type="button" title="Regenerate answer" aria-label="Regenerate answer" disabled>
+            <svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M16 10a6 6 0 1 1-1.7-4.2M16 3.6v4.2h-4.2" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+        </div>
+      </footer>
+
+      <div class="toast" id="toast" role="status" hidden></div>
+    </div>
+    <script type="module" src="results.js"></script>
+  </body>
+</html>

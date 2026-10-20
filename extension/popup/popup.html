@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NeostixSnap</title>
+    <link rel="stylesheet" href="../shared/base.css" />
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body class="popup-body">
+    <main class="popup">
+      <div class="ambient" aria-hidden="true"></div>
+
+      <header class="top">
+        <div class="brand">
+          <span class="logo" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none">
+              <rect x="1.5" y="1.5" width="61" height="61" rx="16" fill="#070B14" stroke="url(#popup-logo-g)" stroke-width="1.5" />
+              <path d="M17 24V17h7M40 17h7v7M47 40v7h-7M24 47h-7v-7" stroke="url(#popup-logo-g)" stroke-width="2.8" stroke-linecap="round" />
+              <circle cx="32" cy="32" r="10.5" stroke="url(#popup-logo-g)" stroke-width="1.8" opacity=".85" />
+              <path d="M33.8 22.5 25.5 34h5.8l-1.1 7.8 8.3-11.7h-5.8l1.1-7.6Z" fill="#fff" />
+              <defs>
+                <linearGradient id="popup-logo-g" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#22D3EE" /><stop offset=".5" stop-color="#3B82F6" /><stop offset="1" stop-color="#8B5CF6" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </span>
+          <span class="brand-word">Neostix<span>Snap</span></span>
+          <span class="version-chip">v1.0</span>
+        </div>
+        <button class="icon-btn" id="openSettings" type="button" title="Settings" aria-label="Open settings">
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M9.6 3.6h4.8l.6 2.1a7 7 0 0 1 1.7.9l2.1-.6 2.4 4.2-1.5 1.5c.1.4.2.9.2 1.4s-.1 1-.2 1.4l1.5 1.5-2.4 4.2-2.1-.6a7 7 0 0 1-1.7.9l-.6 2.1H9.6l-.6-2.1a7 7 0 0 1-1.7-.9l-2.1.6-2.4-4.2 1.5-1.5a7 7 0 0 1 0-2.8L2.8 10.2l2.4-4.2 2.1.6a7 7 0 0 1 1.7-.9l.6-2.1Z" stroke="currentColor" stroke-width="1.35" />
+            <circle cx="12" cy="12.6" r="2.6" stroke="currentColor" stroke-width="1.35" />
+          </svg>
+        </button>
+      </header>
+
+      <section class="hero">
+        <button class="status-pill" id="statusPill" type="button" title="Open backend settings">
+          <span class="status-dot checking" id="statusDot"></span>
+          <span class="status-text" id="statusText">Checking backend…</span>
+          <svg class="status-chevron" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="m3 4.5 3 3 3-3" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+        </button>
+
+        <h1>From screen<br /><span class="grad-text">to solved.</span></h1>
+        <p class="lede">
+          Snap any exercise and get an explained answer in seconds — without
+          leaving the page or uploading files manually.
+        </p>
+
+        <div class="viewfinder" aria-hidden="true">
+          <span class="vf-corner tl"></span>
+          <span class="vf-corner tr"></span>
+          <span class="vf-corner bl"></span>
+          <span class="vf-corner br"></span>
+          <span class="vf-chip">VISION</span>
+          <span class="vf-chip right">REASONING</span>
+          <div class="scanner-line"></div>
+          <div class="lens">
+            <div class="lens-ring"></div>
+            <div class="lens-core">
+              <svg viewBox="0 0 24 24" fill="none">
+                <path d="M13.8 2.4 5.5 13.8h5.7L10.1 21.6l8.4-12h-5.8l1.1-7.2Z" fill="url(#popup-bolt)" />
+                <defs>
+                  <linearGradient id="popup-bolt" x1="6" y1="2" x2="18" y2="22" gradientUnits="userSpaceOnUse">
+                    <stop stop-color="#ecfeff" /><stop offset=".48" stop-color="#7dd3fc" /><stop offset="1" stop-color="#c4b5fd" />
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+          </div>
+          <span class="vf-label">ANY SUBJECT · PRINTED, DIAGRAMS &amp; HANDWRITING</span>
+        </div>
+
+        <button class="snap-button" id="snapBtn" type="button">
+          <span class="snap-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none">
+              <path d="M4 8V5.5A1.5 1.5 0 0 1 5.5 4H8M16 4h2.5A1.5 1.5 0 0 1 20 5.5V8M20 16v2.5a1.5 1.5 0 0 1-1.5 1.5H16M8 20H5.5A1.5 1.5 0 0 1 4 18.5V16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+              <path d="M8.5 12h7M12 8.5v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".6" />
+            </svg>
+          </span>
+          <span class="snap-label" id="snapLabel">Snap &amp; Solve</span>
+          <span class="snap-arrow" aria-hidden="true">
+            <svg viewBox="0 0 20 20" fill="none"><path d="M4.5 10h10m-3.5-3.5L14.5 10 11 13.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </button>
+
+        <div class="shortcut-line">
+          Press <kbd id="shortcut">Alt + Q</kbd> on any page, or use the button above
+        </div>
+
+        <div class="inline-error" id="errorBox" role="alert" hidden>
+          <svg viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <circle cx="10" cy="10" r="7.2" stroke="currentColor" stroke-width="1.4" />
+            <path d="M10 6.2v4.6M10 13.7v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
+          <span id="errorText"></span>
+          <button type="button" id="errorAction" hidden>Settings</button>
+        </div>
+      </section>
+
+      <section class="how" aria-label="How it works">
+        <div class="how-step"><span class="how-num">01</span><div><b>Shortcut</b><small>Press Alt + Q</small></div></div>
+        <div class="how-line"></div>
+        <div class="how-step"><span class="how-num">02</span><div><b>Select</b><small>Drag over the question</small></div></div>
+        <div class="how-line"></div>
+        <div class="how-step"><span class="how-num">03</span><div><b>Solved</b><small>Answer + steps</small></div></div>
+      </section>
+
+      <footer class="footer">
+        <span class="privacy">
+          <svg viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M8 1.8 13 3.6v4c0 3-2.1 5.3-5 6.6-2.9-1.3-5-3.6-5-6.6v-4L8 1.8Z" stroke="currentColor" stroke-width="1.1" />
+            <path d="m5.8 8 1.5 1.4L10.4 6" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          Screenshots are sent only when you snap. Never stored.
+        </span>
+        <a href="../privacy/privacy.html" target="_blank" rel="noreferrer">Privacy</a>
+      </footer>
+    </main>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>
